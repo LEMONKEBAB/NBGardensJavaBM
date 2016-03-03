@@ -4,16 +4,23 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import com.mongodb.WriteResult;
 
+import entityObjects.Address;
+import entityObjects.ProductM;
+
+/// insert good things
 
 public class Query {
 	private Connect connect = new Connect();
+	private Connect connectM = new Connect();
 	
 	/**
 	 * Selects all entries from the table corresponding to the passed in entity
@@ -30,7 +37,7 @@ public class Query {
 		Statement stat = null;
 			try {
 				conn = connect.getConn(url, user, pass);
-				//System.out.println("Connected");
+				System.out.println("Connected");
 				stat = conn.createStatement(
 						ResultSet.TYPE_SCROLL_SENSITIVE,
 						ResultSet.CONCUR_READ_ONLY);
@@ -43,12 +50,17 @@ public class Query {
 			 for (int i = 1; i <= columnCount; i++ ) {
 				  String name = rsmd.getColumnName(i);
 				  columnNames[i-1] = name;
-				}
+				}	
+			 String header = "";
 			 String print = "";
 			 try{
+				 for(int i = 0; i<= columnCount -1; i++){
+					 header += columnNames[i]+", ";
+				 }
+				 System.out.println(header);
 				 while(rs.next()){
 					 for(int i = 0; i<= columnCount -1; i++){
-						 print = print + rs.getString(columnNames[i])+", ";				
+						 print += rs.getString(columnNames[i])+", ";	
 					 }
 					 print = print + "\n";
 				 }
@@ -63,13 +75,13 @@ public class Query {
 				se.printStackTrace();
 			} finally {
 				connect.closeConn(stat, conn);
-				//System.out.println("Disconnected");
+				System.out.println("Disconnected");
 			}
 			return rs;
 		}
 	
-	/*public <E> void addEntity(E e, String host, int port, String dbn, String user, char[] pass) {
-			 MongoClient client = new MongoClient(new ServerAddress(host, port), getcreds(dbn, user, pass));
+	public <E> void addEntity(E e, String host, int port, String dbn, String user, char[] pass) {
+			 MongoClient client = new MongoClient(host, port);
 			 @SuppressWarnings("deprecation")
 			DB db = client.getDB(dbn);
 			 DBCollection col = db.getCollection(
@@ -85,5 +97,27 @@ public class Query {
 			 } finally {
 			 client.close();
 			 }
-			}*/
+			}
+	public <E> void readProduct(E a,String host, int port, String dbn) {
+		MongoClient client = new MongoClient(host, port);
+		try{
+			@SuppressWarnings("deprecation")
+			DB db = client.getDB(dbn);
+			System.out.println("Connected");
+			DBCollection col = db.getCollection(
+				a.getClass().getName(). substring(
+				a.getClass().getName().lastIndexOf('.') + 1));
+			//System.out.println(col);
+			
+			DBCursor c = col.find();
+			while(c.hasNext()){
+				System.out.println(c.next());
+			}
+			//DBCursor c = (DBCursor) col.findOne(BasicDBObjectBuilder.start().add("productID", a.getProductID()));
+		}catch(Exception e){
+			 System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		}finally{
+			client.close();
+			System.out.println("Disconnected");}
+			}
 }
