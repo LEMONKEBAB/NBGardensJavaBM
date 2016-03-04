@@ -15,14 +15,27 @@ public class IMS {
 	Statement stat = null;
 	private Query query = new Query();
 	private Login signin = new Login();
-	char[] Chararr = {1, 2, 3, 4};
 	public static void main(String[] args) {
 		IMS ims = new IMS();
-		System.out.println(ims.logon());
+		String role = ims.logon();
+		//System.out.println(role);
 		
 	}
 	public String logon(){
-		return signin.login("'G.Gabon'", "'G.Gabon'", url , "SYSTEM", "1234");
+		String role = signin.login("'K.Magnusson'", "'K.Magnusson'", url , "SYSTEM", "1234");
+		if (role == null){
+			System.out.println("Login Failed");}
+		else{
+			System.out.println("Login Successful");
+			if(role.equals("Sales")){
+				System.out.println("Sales access");}
+			else if(role.equals("Accounts")){
+				System.out.println("Accounts access");}
+			else if(role.equals("Warehouse")){
+				System.out.println("WH access");}
+			else if(role.equals("Inventory Manager")){
+				System.out.println("IM access");}}
+		return role;
 	}
 	
 	public void mongo() {
@@ -35,6 +48,6 @@ public class IMS {
 		query.selectEntity(new Employee(), url, "SYSTEM", "1234");
 	}
 	public void update(){
-		query.updateProduct(url, "SYSTEM", "1234", "-", 3, "productID = 1");
+		query.updateProduct(url, "SYSTEM", "1234", "+", 3, "productID = 1");
 	}
 }

@@ -25,18 +25,13 @@ public class Login {
 				role = rs.getString("EMPLOYEEROLE");
 				//System.out.println(role);
 				}
-			 }catch (SQLException se) {
+			}catch (SQLException se) {
 				se.printStackTrace();
 				
 			} finally {
 				connect.closeConn(stat, conn);
-				System.out.println("Disconnected");
-				
-				
+				System.out.println("Disconnected");	
 			}
-		
-		return role;
-		
-			
+		return role;		
 		}
 }
