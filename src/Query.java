@@ -4,23 +4,21 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.mongodb.BasicDBObjectBuilder;
+
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.ServerAddress;
 import com.mongodb.WriteResult;
 
-import entityObjects.Address;
-import entityObjects.ProductM;
+
+
 
 /// insert good things
 
 public class Query {
 	private Connect connect = new Connect();
-	private Connect connectM = new Connect();
 	
 	/**
 	 * Selects all entries from the table corresponding to the passed in entity
