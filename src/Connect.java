@@ -43,7 +43,7 @@ public class Connect {
 			}
 		}
 	}
-	
+	//I have added this through linux
 	/*public DB getConnM(String host, int port){
 			MongoClient client = new MongoClient(host,port);
 			@SuppressWarnings("deprecation")
