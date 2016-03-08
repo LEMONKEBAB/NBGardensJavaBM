@@ -44,6 +44,7 @@ public class Connect {
 		}
 	}
 	//I have added this through linux
+	//Now this was added through windows
 	/*public DB getConnM(String host, int port){
 			MongoClient client = new MongoClient(host,port);
 			@SuppressWarnings("deprecation")
