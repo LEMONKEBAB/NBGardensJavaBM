@@ -17,7 +17,7 @@ public class IMS {
 	private Login signin = new Login();
 	public static void main(String[] args) {
 		IMS ims = new IMS();
-		String role = ims.logon();
+		ims.logon();
 		//System.out.println(role);
 		
 	}
