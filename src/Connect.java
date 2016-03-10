@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.TimeZone;
 
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -8,11 +9,12 @@ import oracle.jdbc.pool.OracleDataSource;
 public class Connect {
 	
 	public Connection getConn (String url, String user, String pass) {
-			 
+		
+		TimeZone timeZone = TimeZone.getTimeZone("Europe/London");
+	    TimeZone.setDefault(timeZone); 
 		Connection conn = null;
 			
 		try {
-			
 			OracleDataSource ds = new OracleDataSource();
 			ds.setURL(url);
 			conn = ds.getConnection(user, pass);

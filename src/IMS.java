@@ -11,7 +11,7 @@ import entityObjects.ProductM;
 
 
 public class IMS {
-	String url = "jdbc:oracle:thin:@localhost:1521/xe";
+	String url = "jdbc:oracle:thin:@192.168.1.42:1521/xe";
 	Statement stat = null;
 	private Query query = new Query();
 	private Login signin = new Login();
