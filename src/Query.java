@@ -100,7 +100,7 @@ public class Query {
 			return rs;
 		}
 	
-	public <E> void addEntity(E e, String host, int port, String dbn) {
+	/*public <E> void addEntity(E e, String host, int port, String dbn) {
 		MongoClient client = new MongoClient(host, port);
 		@SuppressWarnings("deprecation")
 		DB db = client.getDB(dbn);
@@ -117,7 +117,7 @@ public class Query {
 		} finally {
 			client.close();
 		}
-	}
+	}*/
 	
 	public <E> void readProduct(E a,String host, int port, String dbn) {
 		MongoClient client = new MongoClient(host, port);
