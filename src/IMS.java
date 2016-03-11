@@ -2,6 +2,7 @@
 
 
 import java.sql.Statement;
+import java.util.Scanner;
 
 import entityObjects.Address;
 import entityObjects.Customer;
@@ -22,7 +23,18 @@ public class IMS {
 		
 	}
 	public String logon(){
-		String role = signin.login("'K.Magnusson'", "'K.Magnusson'", url , "SYSTEM", "1234");
+		Scanner user_input = new Scanner( System.in );
+		String username = "'";
+		String password ="'";
+		System.out.println("Enter your username");
+		username = username + user_input.next() + "'";
+		System.out.println(username);
+		System.out.println("Enter your password");
+		password = password + user_input.next() + "'";
+		System.out.println(password);
+		user_input.close();
+		
+		String role = signin.login(username, password, url , "SYSTEM", "1234");
 		if (role == null){
 			System.out.println("Login Failed");}
 		else{
