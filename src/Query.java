@@ -78,7 +78,7 @@ public class Query {
 			return rs;
 		}
 	
-	public ResultSet updateProduct(String url, String user, String pass, String pm, int i, String query) {
+	public ResultSet updateProduct(String url, String user, String pass, String pm, int j, int i) {
 		ResultSet rs = null;
 		Connection conn = null;
 		Statement stat = null;
@@ -88,7 +88,7 @@ public class Query {
 				stat = conn.createStatement(
 						ResultSet.TYPE_SCROLL_SENSITIVE,
 						ResultSet.CONCUR_READ_ONLY);
-			 rs = stat.executeQuery("UPDATE PRODUCT SET QUANTITY = QUANTITY " + pm + i + " WHERE " + query);
+			 rs = stat.executeQuery("UPDATE PRODUCT SET QUANTITY = QUANTITY " + pm + i + " WHERE productid = " + j);
 			 
 				 
 			 }catch (SQLException se) {

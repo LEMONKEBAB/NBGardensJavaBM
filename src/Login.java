@@ -1,6 +1,5 @@
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,7 +15,7 @@ public class Login {
 		String role = null;
 		try {
 			conn = connect.getConn(url, user, pass);
-			System.out.println("Connected");
+			//System.out.println("Connected");
 			stat = conn.createStatement(
 				ResultSet.TYPE_SCROLL_SENSITIVE,
 				ResultSet.CONCUR_READ_ONLY);
@@ -30,7 +29,7 @@ public class Login {
 				
 			} finally {
 				connect.closeConn(stat, conn);
-				System.out.println("Disconnected");	
+				//System.out.println("Disconnected");	
 			}
 		return role;		
 		}
